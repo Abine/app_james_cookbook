@@ -1,0 +1,61 @@
+{
+  "name": "app_james",
+  "description": "Installs/Configures JAMES",
+  "long_description": "Description\n===========\nCookbook for deploying and administering the Apache JAMES server.\n\nRequirements\n============\nCookbooks:\n * Rightscale\n * Repo\n * App\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "maintainer": "Abine, Inc.",
+  "maintainer_email": "cloud@abine.com",
+  "license": "All rights reserved",
+  "platforms": {
+  },
+  "dependencies": {
+    "rightscale": ">= 0.0.0",
+    "svn_ssh": ">= 0.0.0",
+    "app": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "app_james/destination": {
+      "display_name": "JAMES Installation Directory",
+      "description": "Directory to deploy the JAMES files to. Please omit the trailing slash. Default: /home/james",
+      "default": "/home/james",
+      "required": "optional",
+      "recipes": [
+        "app_james::default"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/jvm_heap": {
+      "display_name": "Max JVM Heap Size (MB)",
+      "description": "Maximum size of the JVM heap. Enter in MB (e.g. 3072 MB)",
+      "required": "optional",
+      "default": "3072",
+      "recipes": [
+        "app_james::default"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "app_james::default": "Set up the JAMES server"
+  },
+  "version": "0.0.1"
+}
