@@ -71,6 +71,4 @@ end
 # Allow executing the start script
 execute "chmod +x #{deploy_to}/james-2.3.2/bin/phoenix.sh"
 
-node[:app][:destination] = node[:app_james][:destination]
-
 rightscale_marker :end

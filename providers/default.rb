@@ -20,16 +20,16 @@ action :setup_db_connection do
   raise "DB connection setup not scripted"
 end
 
-# Stop cherrypy
+# Stop james
 action :stop do
-  execute "#{node[:app][:destination]}/james-2.3.2/bin/phoenix.sh stop" do
+  execute "#{node[:app_james][:destination]}/james-2.3.2/bin/phoenix.sh stop" do
     environment({'JAVA_HOME' => '/usr/lib/jvm/java-7-openjdk-amd64'})
   end
 end
 
-# Start cherrypy
+# Start james
 action :start do
-  execute "#{node[:app][:destination]}/james-2.3.2/bin/phoenix.sh start" do
+  execute "#{node[:app_james][:destination]}/james-2.3.2/bin/phoenix.sh start" do
     environment({'JAVA_HOME' => '/usr/lib/jvm/java-7-openjdk-amd64',
       'PHOENIX_JVM_OPTS' => "-Xmx#{node[:app_james][:jvm_heap]}M"})
   end
@@ -52,31 +52,31 @@ end
 action :code_update do
   #stopping server
   action_stop
-  
+
   #delete the old config and abine code
-  file "#{node[:app][:destination]}/james-2.3.2/apps/james/SAR-INF/config.xml" do
+  file "#{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/config.xml" do
     action :delete
   end
-  file "#{node[:app][:destination]}/james-2.3.2/apps/james/SAR-INF/lib/abine.jar" do
+  file "#{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/lib/abine.jar" do
     action :delete
   end
-  directory "#{node[:app][:destination]}/abine" do
+  directory "#{node[:app_james][:destination]}/abine" do
     action :delete
   end
-  directory "#{node[:app][:destination]}/abine"
-      
+  directory "#{node[:app_james][:destination]}/abine"
+
   #asking svn_ssh to grab the code
   svn_ssh 'pull code' do
     action :update
-    destination "#{node[:app][:destination]}/abine"
+    destination "#{node[:app_james][:destination]}/abine"
     ssh_key node[:svn_ssh][:ssh_key]
     ssh_user node[:svn_ssh][:ssh_user]
     repo_location node[:svn_ssh][:repo_location]
   end
-  
+
   #copy the config and abine files
-  execute "cp #{node[:app][:destination]}/abine/config.xml #{node[:app][:destination]}/james-2.3.2/apps/james/SAR-INF/config.xml"
-  execute "cp #{node[:app][:destination]}/abine/abine.jar #{node[:app][:destination]}/james-2.3.2/apps/james/SAR-INF/lib/abine.jar"
-  
+  execute "cp #{node[:app_james][:destination]}/abine/config.xml #{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/config.xml"
+  execute "cp #{node[:app_james][:destination]}/abine/abine.jar #{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/lib/abine.jar"
+
   action_start
 end
