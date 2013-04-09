@@ -22,6 +22,10 @@ aptpkgs.each do |p|
   end
 end
 
+package "postfix" do
+  action :remove
+end
+
 # Download and unpack JAMES
 log "Downloading and unpacking JAMES..."
 directory deploy_to do
