@@ -1,6 +1,6 @@
 {
   "name": "app_james",
-  "description": "Installs/Configures JAMES",
+  "description": "Installs/Configures James",
   "long_description": "Description\n===========\nCookbook for deploying and administering the Apache JAMES server.\n\nRequirements\n============\nCookbooks:\n * Rightscale\n * Repo\n * App\n\nAttributes\n==========\n\nUsage\n=====\n\n",
   "maintainer": "Abine, Inc.",
   "maintainer_email": "cloud@abine.com",
@@ -50,12 +50,65 @@
       ],
       "calculated": false,
       "type": "string"
+    },
+    "app_james/db/db_user": {
+      "display_name": "Database Username",
+      "description": "Username to connect to the database with",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_db_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/db/db_pwd": {
+      "display_name": "Database Password",
+      "description": "Password to connect to the database with",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_db_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/db/db_name": {
+      "display_name": "Database name",
+      "description": "Name of James database",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_db_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/db/db_host": {
+      "display_name": "Database FQDN",
+      "description": "Fully qualified domain name for the database host",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_db_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
     }
   },
   "groupings": {
   },
   "recipes": {
-    "app_james::default": "Set up the JAMES server"
+    "app_james::default": "Set up the James server",
+    "app_james::setup_db_connection": "Provision a database snippet for James"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

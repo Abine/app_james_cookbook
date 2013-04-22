@@ -7,6 +7,12 @@
 #
 
 
-# Attributes for JAMES platform
+# Attributes for James' platform
 default[:app_james][:destination] = '/home/james'
 default[:app_james][:jvm_heap] = '3072'
+
+# Attributes for James' database connection
+default[:app_james][:db][:db_user] = ''
+default[:app_james][:db][:db_pwd] = ''
+default[:app_james][:db][:db_name] = ''
+default[:app_james][:db][:db_host] = ''

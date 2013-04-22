@@ -17,7 +17,18 @@ action :setup_vhost do
   raise "VHOSTs not supported"
 end
 action :setup_db_connection do
-  raise "DB connection setup not scripted"
+  template "#{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/db.xml" do
+    source "db.xml.erb"
+    mode "0644"
+    owner "root"
+    group "root"
+    variables({
+      :db_host => node[:app_james][:db][:db_host],
+      :db_user => node[:app_james][:db][:db_user],
+      :db_pwd => node[:app_james][:db][:db_pwd],
+      :db_name => node[:app_james][:db][:db_name]
+    })
+  end
 end
 
 # Stop james
