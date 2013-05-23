@@ -73,6 +73,7 @@ action :code_update do
   end
   directory "#{node[:app_james][:destination]}/abine" do
     action :delete
+    recursive true
   end
   directory "#{node[:app_james][:destination]}/abine"
 
