@@ -16,3 +16,8 @@ default[:app_james][:db][:db_user] = ''
 default[:app_james][:db][:db_pwd] = ''
 default[:app_james][:db][:db_name] = ''
 default[:app_james][:db][:db_host] = ''
+
+# Attributes for spool monitoring
+default[:app_james][:spool][:service_key] = ''
+default[:app_james][:spool][:trigger] = '100'
+default[:app_james][:spool][:resolve] = '50'
