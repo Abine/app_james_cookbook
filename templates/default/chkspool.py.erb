@@ -1,6 +1,7 @@
 import os
 import pagerduty
 import socket
+import time
 
 TRIGGER_THRESHOLD = <%= @trigger %>
 RESOLVE_THRESHOLD = <%= @resolve %>
@@ -9,6 +10,10 @@ SERVICE_KEY = "<%= @service_key %>"
 count = len(os.listdir('/mnt/ephemeral/james/data/mail/spool'))
 p = pagerduty.PagerDuty(SERVICE_KEY)
 if count > TRIGGER_THRESHOLD:
-        p.trigger("Spool size has reached %s" % count, incident_key=socket.gethostname())
+	# recheck in 1 minute
+	time.sleep(60)
+	new_count = len(os.listdir('/mnt/ephemeral/james/data/mail/spool'))
+	if new_count > count:
+		p.trigger("Spool size has reached %s, increasing from %s" % (new_count,count), incident_key=socket.gethostname())
 elif count < RESOLVE_THRESHOLD:
-        p.resolve(socket.gethostname(), "Spool size dropped to %s" % count)
+    p.resolve(socket.gethostname(), "Spool size dropped to %s" % count)
