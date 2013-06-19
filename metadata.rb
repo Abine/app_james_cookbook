@@ -15,6 +15,7 @@ recipe "app_james::default", "Set up the James server"
 recipe "app_james::setup_db_connection", "Provision a database snippet for James"
 recipe "app_james::enable_spool_monitoring", "Enable spool size monitoring"
 recipe "app_james::disable_spool_monitoring", "Disable spool size monitoring"
+recipe "app_james::setup_redis_connection", "Provision a redis snippet for James"
 
 attribute 'app_james/destination',
   :display_name => "JAMES Installation Directory",
@@ -53,6 +54,36 @@ attribute 'app_james/db/db_host',
   :description => "Fully qualified domain name for the database host",
   :required => "required",
   :recipes => ["app_james::setup_db_connection"]
+
+attribute 'app_james/redis/host',
+          :display_name => "Redis FQDN",
+          :description => "Fully qualified domain name for the redis host",
+          :required => "required",
+          :recipes => ["app_james::setup_redis_connection"]
+
+attribute 'app_james/redis/auth_key',
+          :display_name => "Redis AUTH Key",
+          :description => "Key required to AUTH with Redis server",
+          :required => "required",
+          :recipes => ["app_james::setup_redis_connection"]
+
+attribute 'app_james/redis/expires_secs',
+          :display_name => "Redis Mail Expiration",
+          :description => "Seconds a mail lives on redis",
+          :required => "required",
+          :recipes => ["app_james::setup_redis_connection"]
+
+attribute 'app_james/redis/expiration_buffer',
+          :display_name => "Redis Expiration Buffer",
+          :description => "Seconds email body lives after expiration",
+          :required => "required",
+          :recipes => ["app_james::setup_redis_connection"]
+
+attribute 'app_james/redis/user_mails',
+          :display_name => "Redis Mails Per User",
+          :description => "Number of mails to store per target address",
+          :required => "required",
+          :recipes => ["app_james::setup_redis_connection"]
 
 attribute 'app_james/spool/service_key',
   :display_name => "Spool monitoring service key",

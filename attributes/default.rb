@@ -21,3 +21,10 @@ default[:app_james][:db][:db_host] = ''
 default[:app_james][:spool][:service_key] = ''
 default[:app_james][:spool][:trigger] = '100'
 default[:app_james][:spool][:resolve] = '50'
+
+# Attributes for redis server
+default[:app_james][:redis][:host] = 'redis.abine.com'
+default[:app_james][:redis][:auth_key] = '1the_5early_4bird_3catches_2the_1worm'
+default[:app_james][:redis][:expires_secs] = '14400'
+default[:app_james][:redis][:expiration_buffer] = '1200'
+default[:app_james][:redis][:user_mails] = '20'

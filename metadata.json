@@ -104,6 +104,71 @@
       "calculated": false,
       "type": "string"
     },
+    "app_james/redis/host": {
+      "display_name": "Redis FQDN",
+      "description": "Fully qualified domain name for the redis host",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_redis_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/redis/auth_key": {
+      "display_name": "Redis AUTH Key",
+      "description": "Key required to AUTH with Redis server",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_redis_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/redis/expires_secs": {
+      "display_name": "Redis Mail Expiration",
+      "description": "Seconds a mail lives on redis",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_redis_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/redis/expiration_buffer": {
+      "display_name": "Redis Expiration Buffer",
+      "description": "Seconds email body lives after expiration",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_redis_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
+    "app_james/redis/user_mails": {
+      "display_name": "Redis Mails Per User",
+      "description": "Number of mails to store per target address",
+      "required": "required",
+      "recipes": [
+        "app_james::setup_redis_connection"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
     "app_james/spool/service_key": {
       "display_name": "Spool monitoring service key",
       "description": "Pager Duty service key to use for triggering/resolving alerts about spool size reaching large levels",
@@ -152,7 +217,8 @@
     "app_james::default": "Set up the James server",
     "app_james::setup_db_connection": "Provision a database snippet for James",
     "app_james::enable_spool_monitoring": "Enable spool size monitoring",
-    "app_james::disable_spool_monitoring": "Disable spool size monitoring"
+    "app_james::disable_spool_monitoring": "Disable spool size monitoring",
+    "app_james::setup_redis_connection": "Provision a redis snippet for James"
   },
   "version": "0.0.2"
 }
