@@ -90,5 +90,8 @@ action :code_update do
   execute "cp #{node[:app_james][:destination]}/abine/config.xml #{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/config.xml"
   execute "cp #{node[:app_james][:destination]}/abine/abine.jar #{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/lib/abine.jar"
 
+  #copy the lib jars to james lib directory
+  execute "cp #{node[:app_james][:destination]}/abine/lib/* #{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/lib/"
+
   action_start
 end
