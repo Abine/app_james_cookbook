@@ -77,13 +77,19 @@ action :code_update do
   end
   directory "#{node[:app_james][:destination]}/abine"
 
-  #asking svn_ssh to grab the code
-  svn_ssh 'pull code' do
-    action :update
-    destination "#{node[:app_james][:destination]}/abine"
-    ssh_key node[:svn_ssh][:ssh_key]
-    ssh_user node[:svn_ssh][:ssh_user]
-    repo_location node[:svn_ssh][:repo_location]
+  deploy_dir = "#{node[:app_james][:destination]}/abine"
+
+  log "  Starting code update sequence"
+  log "  Current project doc root is set to #{deploy_dir}"
+
+  log "  Starting source code download sequence..."
+  # Calling "repo" LWRP to download remote project repository
+  repo "default" do
+    destination deploy_dir
+    action node[:repo][:default][:perform_action].to_sym
+    app_user node[:app][:user]
+    repository node[:repo][:default][:repository]
+    persist false
   end
 
   #copy the config and abine files
