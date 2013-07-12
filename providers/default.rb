@@ -19,6 +19,7 @@ end
 action :setup_db_connection do
   template "#{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/db.xml" do
     source "db.xml.erb"
+    cookbook "app_james"
     mode "0644"
     owner "root"
     group "root"
