@@ -55,6 +55,10 @@ execute "tar xfz #{deploy_to}/apache-jdkim-0.2-bin.tar.gz" do
   cwd deploy_to
 end
 execute "cp #{deploy_to}/apache-jdkim-0.2/lib/*.jar #{deploy_to}/james-2.3.2/apps/james/SAR-INF/lib"
+# Delete geronimo-javamail_1.4_mail-1.6.jar as it seems to cause encoding issues with quoted printable mails
+file "#{deploy_to}/james-2.3.2/apps/james/SAR-INF/lib/geronimo-javamail_1.4_mail-1.6.jar" do
+  action :delete
+end
 
 # Setting up logs
 log "Setting up logs"
