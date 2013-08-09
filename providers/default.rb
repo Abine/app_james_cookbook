@@ -27,7 +27,8 @@ action :setup_db_connection do
       :db_host => node[:app_james][:db][:db_host],
       :db_user => node[:app_james][:db][:db_user],
       :db_pwd => node[:app_james][:db][:db_pwd],
-      :db_name => node[:app_james][:db][:db_name]
+      :db_name => node[:app_james][:db][:db_name],
+      :db_threads => node[:app_james][:db][:threads]
     })
   end
 end

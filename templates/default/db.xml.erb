@@ -6,7 +6,7 @@
          <dburl>jdbc:mysql://<%= @db_host %>:3306/<%= @db_name %>?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</dburl>
          <user><%= @db_user %></user>
          <password><%= @db_pwd %></password>
-         <max>20</max>
+         <max><%= @db_threads %></max>
       </data-source>
 
    </database-connections>

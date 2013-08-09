@@ -55,6 +55,13 @@ attribute 'app_james/db/db_host',
   :required => "required",
   :recipes => ["app_james::setup_db_connection"]
 
+attribute 'app_james/db/threads',
+  :display_name => "Database Connection Pool Size",
+  :description => "Number of database connections to keep in the pool. It is recommended that this number be at least as large as the number of spool threads",
+  :required => "recommended",
+  :default => "50",
+  :recipes => ["app_james::setup_db_connection"]
+
 attribute 'app_james/redis/host',
           :display_name => "Redis FQDN",
           :description => "Fully qualified domain name for the redis host",
