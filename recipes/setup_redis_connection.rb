@@ -18,7 +18,8 @@ template "#{node[:app_james][:destination]}/james-2.3.2/apps/james/SAR-INF/redis
         :redis_auth_key => node[:app_james][:redis][:auth_key],
         :redis_expires_secs => node[:app_james][:redis][:expires_secs],
         :redis_expiration_buffer => node[:app_james][:redis][:expiration_buffer],
-        :redis_user_mails => node[:app_james][:redis][:user_mails]
+        :redis_user_mails => node[:app_james][:redis][:user_mails],
+        :redis_premium_user_mails => node[:app_james][:redis][:premium_user_mails]
     })
 end
 
